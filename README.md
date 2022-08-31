@@ -1,2 +1,2 @@
 # Projeto-Integrador-Back-End
-Projeto Acadêmico.
+Projeto Acadêmico. API de um PetShop.
