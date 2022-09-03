@@ -4,6 +4,8 @@ require('dotenv').config()
 var cors = require('cors')
 
 const Users = require('./models/User');
+const Pets = require('./models/Pet');
+
 
 
 const router = require('./routes/index');
