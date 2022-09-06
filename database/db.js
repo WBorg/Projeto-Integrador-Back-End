@@ -6,7 +6,7 @@ const sequelize = new Sequelize('petshop','root','Sen@c123',{
 });
 
 sequelize.authenticate().then( function(){
-  console.log('Conecção com o banco de dados relaizada com sucesso! Willy');
+  console.log('Conecção com o banco de dados relaizada com sucesso!');
 }).catch(function(err){
   console.log(`Erro conecção : ${err}`);
 });
