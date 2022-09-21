@@ -6,9 +6,9 @@ const router = require('express').Router();
 // const clientesRoutes = require('./clientes.routes');
 // router.use('/clientes', clientesRoutes);
 
-// // Rota dos produtos
-// const productsRoutes = require('./products.routes');
-// router.use('/products', productsRoutes);
+// Rota dos produtos
+const productsRoutes = require('./products.routes');
+router.use('/products', productsRoutes);
 
 // // Rota dos usuários
 const usersRoutes = require('./users.routes');
