@@ -30,7 +30,7 @@ exports.create =  async(req, res) =>{
 
 exports.findAll = async(req,res)=>{
   await Users.findAll({
-    attributes: ['id','name','email','gender', 'password'],
+    attributes: ['id','name','email', 'password', 'figprofile'],
     order: [['id', 'ASC']]
 
   })
@@ -105,7 +105,7 @@ exports.delete =  async(req,res)=>{
 /************************************************************************************ */
 exports.login =  async (req, res) => {
   const user = await Users.findOne({
-      attributes: ['id', 'name', 'email', 'gender', 'password'],
+      attributes: ['id', 'name', 'email', 'password'],
       where: {
           email: req.body.email
       }
@@ -184,16 +184,13 @@ exports.validaToken =  async (req, res) => {
 
 /***************************************************************************************************** */
 exports.editProfileImage = async (req,res)=>{
-console.log(req.file)
 
   if(req.file){
-      console.log(req.file)
 
       /* apagando a imagem antiga no diretório */
-      // console.log(req.key)
-      await Users.findByPk(req.key)
+      await Users.findByPk(req.id)
       .then( user => {
-          const imgOld = './public/upload/users/' + user.dataValues.imagem
+          const imgOld = './public/images/users/' + user.dataValues.figprofile
 
           fs.access(imgOld, (err)=>{
               if(!err){
@@ -210,8 +207,8 @@ console.log(req.file)
       /******************************************/
 
 
-      await Users.update({imagem: req.file.filename},
-                      {where: {id: req.key}})
+      await Users.update({figprofile: req.file.filename},
+                      {where: {id: req.id}})
       .then(()=>{
               return res.json({
                   erro: false,
@@ -234,3 +231,33 @@ console.log(req.file)
 }
 
 /****************************************************************************************** */
+exports.viewProfile =  async (req, res) => {
+  const { id } = req.params;
+  try {
+      // await User.findAll({ where: {id: id}})
+      const users = await Users.findByPk(id);
+      if(!users){
+          return res.status(400).json({
+              erro: true,
+              mensagem: "Erro: Nenhum Usuário encontrado!"
+          })
+      }
+      if(users.figprofile){
+      var endImagem = "http://localhost:4500/files/users/" + users.figprofile
+          
+      }
+      else{
+        var endImagem = ""
+      }
+      res.status(200).json({
+          erro:false,
+          users,
+          endImagem
+      })
+  } catch (err){
+      res.status(400).json({
+          erro: true,
+          mensagem: `Erro: ${err}`
+      })
+  }
+}

@@ -4,12 +4,16 @@ require('dotenv').config()
 var cors = require('cors')
 
 const Users = require('./models/User');
+const Clientes = require('./models/Cliente');
 
 
 const router = require('./routes/index');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+const path = require('path');
+ app.use('/files', express.static(path.resolve(__dirname, "public", "images")))
 
 app.use((req,res,next)=>{
   res.header("Access-Control-Allow-Origin", "*");

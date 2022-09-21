@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../database/db');
 
-const Func = db.define('funcionarios',{
+const Clientes = db.define('clientes',{
   id: {
     type: Sequelize.INTEGER,  
     autoIncrement: true,
@@ -39,13 +39,13 @@ const Func = db.define('funcionarios',{
 })
 
 //Criar a tabela com sequelize
-//Func.sync();
+//Clientes.sync();
 
 // Excluir a tabela e criar novamente
-//Func.sync({force: true})
+//Clientes.sync({force: true})
 
 // verificar se há alguma diferença na tabel, raliza alteração
-//Func.sync({alter:true});
+//Clientes.sync({alter:true});
 
 
-module.exports = Func;
+module.exports = Clientes;

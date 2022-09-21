@@ -18,14 +18,14 @@ const User = db.define('users',{
     allowNull: false
 
   },
-  gender:{
-    type: Sequelize.STRING(1),
-    allowNull: true
-  },
   password:{
     type: Sequelize.STRING,
     allowNull: false
   },
+  figprofile:{
+    type: Sequelize.STRING,
+    allowNull: true
+  }
   
 })
 
