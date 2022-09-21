@@ -1,21 +1,18 @@
-module.exports = function sendMail(to,cc,subject,html){
+module.exports = function sendMail(to,subject,html){
     const nodemailer = require('nodemailer');
 
     const smtpTransport = nodemailer.createTransport({
         host: process.env.SMTP_SERVER,
         port: parseInt(process.env.SMTP_PORT),
-        // secure: true,
         auth: {
-            user: process.env.SMTP_USERNAMEACCOUNT,
+            user: process.env.SMTP_USERACCOUNT,
             pass: process.env.SMTP_PASSWORD
         }
     })
 
     const message = {
-        from: 'petshop-no-replay@gmail.com',
+        from: 'petvidaanimal-no-replay@gmail.com',
         to,
-        cc,
-        bcc: process.env.SMTP_USERNAMEACCOUNT,
         subject,
         html
     }

@@ -11,8 +11,8 @@ const productsRoutes = require('./products.routes');
 router.use('/products', productsRoutes);
 
 // // Rota dos usuários
-// const usersRoutes = require('./users.routes');
-// router.use('/users', usersRoutes);
+const usersRoutes = require('./users.routes');
+router.use('/users', usersRoutes);
 
 // // Rota dos funcionários
 // const funcionariosRoutes = require('./funcionarios.routes');
