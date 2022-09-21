@@ -1,7 +1,8 @@
-exports.userCreateMailTemplate = (data) =>{
-  var mailBody = "";
-        mailBody += '<div style="background-color:#000; margin-bottom:150px;">';
-        mailBody = mailBody.replace('{gender}', data.gender);
+exports.userCreateMailTemplate = (nome) =>{
+  var mailBody = "<h1>Olá, {nome}</h1>";
+      mailBody += "<p>Seu cadastro no pet Vida Animal foi realizado com sucesso!</p>"
+      
+      mailBody = mailBody.replace('{nome}', nome);
 
         return mailBody;
 }

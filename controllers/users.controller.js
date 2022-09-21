@@ -2,6 +2,9 @@ const Users = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs')
+const sendMail = require('../providers/mailProvider')
+const {userCreateMailTemplate} = require('../template/userCreateMail')
+
 
 
 
@@ -15,6 +18,15 @@ exports.create =  async(req, res) =>{
 
   await Users.create(dados)
   .then(()=>{
+    /* Envio de email */
+    let name = dados.name
+    let to = dados.email
+    let subject = 'Cadastro de usuário'
+    let mailBody = userCreateMailTemplate(name)
+
+
+    sendMail(to,subject,mailBody)
+
     return res.json({
       erro: false,
       mensagem: 'Usuário cadastrado com sucesso!'
@@ -89,8 +101,18 @@ exports.findOne = async (req, res) =>{
 /************************************************************* */
 exports.delete =  async(req,res)=>{
   const {id} = req.params;
+  const user = await Users.findByPk(id);
+  const imgOld = './public/images/users/' + user.dataValues.figprofile
+
+          fs.access(imgOld, (err)=>{
+              if(!err){
+                  fs.unlink(imgOld, ()=>{})
+              }
+          })
+
   await Users.destroy({where: {id}})
   .then(()=>{
+    
     return res.json({
       erro: false,
       mensagem: "Usuário apadado com sucesso!"
