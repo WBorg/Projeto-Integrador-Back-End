@@ -8,7 +8,7 @@ exports.create =  async(req, res) =>{
   .then(()=>{
     return res.json({
       erro: false,
-      mensagem: 'Produto inserido com sucesso!'
+      mensagem: 'Produto inserido com sucesso!!'
     });
   }).catch((err)=>{
     return res.status(400).json({
