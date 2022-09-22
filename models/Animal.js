@@ -33,7 +33,7 @@ const Clientes = require('./Cliente')
 Clientes.hasMany(Animais,{
   constraint: true,
   foreignKey: 'ClienteID',
-  nDelete: 'RESTRICT',
+  onDelete: 'RESTRICT',
   onUpdate : 'CASCADE'
 })
 
