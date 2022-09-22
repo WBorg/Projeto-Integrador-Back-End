@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
 const db = require('../database/db');
 
-const User = db.define('users',{
+const Clientes = db.define('clientes',{
   id: {
     type: Sequelize.INTEGER,  
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  name:{
+  nome:{
     type: Sequelize.STRING(50),
     allowNull: false
 
@@ -18,25 +18,37 @@ const User = db.define('users',{
     allowNull: false
 
   },
-  password:{
+  idade:{
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  sexo:{
     type: Sequelize.STRING,
     allowNull: false
   },
-  figprofile:{
+  cpf:{
     type: Sequelize.STRING,
-    allowNull: true
-  }
-  
+    allowNull: false
+  },
+  telefone:{
+    type: Sequelize.STRING,
+    allowNull: false
+  },
 })
+  
+
+
+  
+  
 
 //Criar a tabela com sequelize
-// User.sync();
+//Clientes.sync();
 
 // Excluir a tabela e criar novamente
-//User.sync({force: true})
+//Clientes.sync({force: true})
 
 // verificar se há alguma diferença na tabel, raliza alteração
-//User.sync({alter:true});
+//Clientes.sync({alter:true});
 
 
-module.exports = User;
+module.exports = Clientes;
