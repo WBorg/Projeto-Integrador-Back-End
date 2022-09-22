@@ -3,8 +3,8 @@ const router = require('express').Router();
 
 
 // //Rota de clientes 
-// const clientesRoutes = require('./clientes.routes');
-// router.use('/clientes', clientesRoutes);
+ const clientesRoutes = require('./clientes.routes');
+ router.use('/clientes', clientesRoutes);
 
 // // Rota dos produtos
 // const productsRoutes = require('./products.routes');

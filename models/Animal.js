@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const db = require('../database/db');
+const Clientes = require('./Cliente')
 
-const Clientes = db.define('clientes',{
+ const Animais = db.define('animais',{
   id: {
     type: Sequelize.INTEGER,  
     autoIncrement: true,
@@ -13,42 +14,43 @@ const Clientes = db.define('clientes',{
     allowNull: false
 
   },
-  email:{
+  tipo:{
     type: Sequelize.STRING,
     allowNull: false
 
   },
-  idade:{
-    type: Sequelize.INTEGER,
-    allowNull: false
+  raça:{
+    type: Sequelize.STRING(1),
+    allowNull: true
   },
-  sexo:{
+  peso:{
     type: Sequelize.STRING,
     allowNull: false
   },
-  cpf:{
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  telefone:{
-    type: Sequelize.STRING,
-    allowNull: false
-  },
+  
 })
-  
 
+Clientes.hasMany(Animais,{
+  constraint: true,
+  foreignKey: 'ClienteID',
+  nDelete: 'RESTRICT',
+  onUpdate : 'CASCADE'
+})
 
-  
-  
+Animais.belongsTo(Clientes,{
+  constraint: true,
+  foreignKey: 'ClienteID',
+  onDelete: 'RESTRICT',
+  onUpdate : 'CASCADE'
+})
 
 //Criar a tabela com sequelize
-//Clientes.sync();
+// Animais.sync();
 
 // Excluir a tabela e criar novamente
-//Clientes.sync({force: true})
+//Animais.sync({force: true})
 
 // verificar se há alguma diferença na tabel, raliza alteração
-//Clientes.sync({alter:true});
+//Animais.sync({alter:true});
 
-
-module.exports = Clientes;
+module.exports = Animais;

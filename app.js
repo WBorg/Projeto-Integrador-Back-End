@@ -5,6 +5,7 @@ var cors = require('cors')
 
 const Users = require('./models/User');
 const Clientes = require('./models/Cliente');
+const Animais = require('./models/Animal')
 
 
 const router = require('./routes/index');
