@@ -7,8 +7,8 @@ const router = require('express').Router();
  router.use('/clientes', clientesRoutes);
 
 // Rota dos produtos
-const productsRoutes = require('./products.routes');
-router.use('/products', productsRoutes);
+//const productsRoutes = require('./products.routes');
+//router.use('/products', productsRoutes);
 
 // // Rota dos usuários
 const usersRoutes = require('./users.routes');
