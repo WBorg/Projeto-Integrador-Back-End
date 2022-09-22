@@ -4,10 +4,14 @@ require('dotenv').config()
 var cors = require('cors')
 
 const Users = require('./models/User');
-
-
 const Clientes = require('./models/Cliente');
-const Produtos = require('./models/Products');
+const Animais = require('./models/Animal')
+
+
+
+
+
+
 
 
 const router = require('./routes/index');
